@@ -41,7 +41,6 @@ const ExpenseContainer = () => {
 	useEffect(() => {
 		setFilteredData(tableData);
 	}, [tableData]);
-	console.log(filteredData);
 	const [searchData, setSearchData] = useState([]);
 	const [search, setSearch] = useState("");
 
