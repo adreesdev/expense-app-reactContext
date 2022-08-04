@@ -35,7 +35,13 @@ const ExpenseContainer = () => {
 		type: "",
 		amount: "",
 	});
+
 	const [filteredData, setFilteredData] = useState(tableData);
+
+	useEffect(() => {
+		setFilteredData(tableData);
+	}, [tableData]);
+	console.log(filteredData);
 	const [searchData, setSearchData] = useState([]);
 	const [search, setSearch] = useState("");
 
@@ -93,7 +99,7 @@ const ExpenseContainer = () => {
 
 		setSearchData(results);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [search]);
+	}, [search, filteredData]);
 
 	const handleClickOpen = () => setOpen(true);
 
@@ -142,17 +148,19 @@ const ExpenseContainer = () => {
 						>
 							Expenses
 						</Typography>
-						<TextField
-							size="small"
-							label="Search"
-							variant="outlined"
-							onChange={(e) => setSearch(e.target.value)}
-						/>
-						&nbsp;
 						{tableData.length > 0 ? (
-							<Button variant="contained" onClick={handleClickOpen}>
-								<FilterAltIcon />
-							</Button>
+							<>
+								<TextField
+									size="small"
+									label="Search"
+									variant="outlined"
+									onChange={(e) => setSearch(e.target.value)}
+								/>
+								&nbsp;
+								<Button variant="contained" onClick={handleClickOpen}>
+									<FilterAltIcon />
+								</Button>
+							</>
 						) : null}
 						<Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
 							<DialogTitle>Select the filters</DialogTitle>
