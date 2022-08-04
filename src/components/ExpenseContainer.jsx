@@ -145,7 +145,7 @@ const ExpenseContainer = () => {
 							id="tableTitle"
 							component="div"
 						>
-							Expenses
+							Expenses: {tableData.reduce((a, b) => a + b.amount, 0)}
 						</Typography>
 						{tableData.length > 0 ? (
 							<>
@@ -161,6 +161,10 @@ const ExpenseContainer = () => {
 								</Button>
 							</>
 						) : null}
+						&nbsp;
+						<Button variant="contained" color="warning" onClick={handleOpenAdd}>
+							<AddIcon />
+						</Button>
 						<Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
 							<DialogTitle>Select the filters</DialogTitle>
 							<DialogContent>
@@ -214,10 +218,6 @@ const ExpenseContainer = () => {
 								</Button>
 							</DialogActions>
 						</Dialog>
-						&nbsp;
-						<Button variant="contained" color="warning" onClick={handleOpenAdd}>
-							<AddIcon />
-						</Button>
 						<Modal
 							open={openAdd}
 							onClose={handleCloseAdd}
