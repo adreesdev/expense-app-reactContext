@@ -92,6 +92,7 @@ const ExpenseContainer = () => {
 		}
 
 		setSearchData(results);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [search]);
 
 	const handleClickOpen = () => setOpen(true);
